@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<title>PCNT</title>
+	<meta charset="utf-8">
+	<meta name="author" content="Alex Sandro, Caio Vitor e Mathuzalem Ferreira">
+	<meta name="description" content="Inscrição para palestras sobre Ciências da Natureza e suas Tecnologias">
+	<meta name="keywords" content="Ciências da Natureza e suas Tecnologias">
+	<meta name="viewport" content="width=device-width, user-scalable=no">
+	<link rel="stylesheet" href="{% static 'css/w3.css' %}">
+	<link rel="stylesheet" href="{% static 'css/index.css' %}">
+	<script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+	<script type="text/javascript">
+		alert("Ação Impossível! Você é aluno.")
+	</script>
+</head>
+
+<body>
+	<div align="center" id="Cabeçalho">
+		<img alt="CIÊNCIAS DA NATUREZA" src="{% static 'logo.png' %}" id="Logo">
+		<a href="{% url 'Login' %}"><button name="Login" id="Button_1" class="w3-button w3-black">LOGOUT</button></a>
+	</div>
+
+	<div id="Div_1">
+		<img src="{% static 'left_detalhe.png' %}" style="min-width: 20%; max-width: 30%;">
+	</div>
+	<div id="Div_2" align="right">
+		<img src="{% static 'right_detalhe.png' %}" style="min-width: 60%; max-width: 78%;">
+	</div>
+	<div id="Div_3" class="w3-responsive">
+		<fieldset>
+			<table>
+				<tr>
+					<td>
+						<a href="{% url 'AddCurso' %}">
+							<button class="w3-button">
+							<img src="{% static 'folder.png' %}" id="Palestra" align="left">
+							<h2 class="H2_1">ADICIONAR CURSO</h2>
+							</button>
+						</a>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<a href="{% url 'ModCurso' %}">
+							<button class="w3-button">
+								<img src="{% static 'change.png' %}" id="Palestra" align="left">
+								<h2 class="H2_1">MODIFICAR CURSO</h2>
+							</button>
+						</a>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<a href="{% url 'InCurso' %}">
+							<button class="w3-button">
+								<img src="{% static 'dustbin.png' %}" id="Palestra" align="left">
+								<h2 class="H2_1">EXCLUIR CURSO</h2>
+							</button>
+						</a>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<a href="{% url 'InCurso' %}">
+							<button class="w3-button">
+								<img src="{% static 'teacher.png' %}" id="Palestra" align="left">
+								<h2 class="H2_1">INSCREVE-SE EM CURSO</h2>
+							</button>
+						</a>
+					</td>
+					
+				</tr>
+				
+			</table>
+		</fieldset>
+	</div>
+	<div id="Rodape">
+		<hr>
+		<h4>&#169; COPYRIGHT 2017 - Grupo Triplex IFRN</h4>
+	</div>
+</body>
+</html>

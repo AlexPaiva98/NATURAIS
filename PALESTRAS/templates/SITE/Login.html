@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<title>PCNT</title>
+	<meta charset="utf-8">
+	<meta name="author" content="Alex Sandro, Caio Vitor e Mathuzalem Ferreira">
+	<meta name="description" content="Inscrição para palestras sobre Ciências da Natureza e suas Tecnologias">
+	<meta name="keywords" content="Ciências da Natureza e suas Tecnologias">
+	<meta name="viewport" content="width=device-width, user-scalable=no">
+	<link rel="stylesheet" href="{% static 'css/w3.css' %}">
+	<link rel="stylesheet" href="{% static 'css/index.css' %}">
+	<script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+	<script type="text/javascript">
+		function mascara(o,f){
+    		v_obj=o
+    		v_fun=f
+    	setTimeout("execmascara()",1)
+		}
+		function execmascara(){
+		    v_obj.value=v_fun(v_obj.value)
+		}
+		function mcpf(v){
+    		v=v.replace(/\D/g,"");             //Remove tudo o que não é dígito
+    		v=v.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4");
+    		return v;
+		}
+	</script>
+</head>
+
+<body>
+	<div align="center" id="Cabeçalho">
+		<a href="{% url 'post_list' %}"><img alt="CIÊNCIAS DA NATUREZA" src="{% static 'logo.png' %}" id="Logo"></a>
+		<a href="{% url 'Login' %}"><button name="Login" id="Button_1" class="w3-button w3-black">Login</button></a>
+		<a href="{% url 'Cadastro' %}"><button name="Inscrever" id="Button_2" class="w3-button w3-black">Inscrição</button></a>
+	</div>
+
+	<div id="Div_1">
+		<img src="{% static 'left_detalhe.png' %}" style="min-width: 20%; max-width: 30%;">
+	</div>
+	<div id="Div_2" align="right">
+		<img src="{% static 'right_detalhe.png' %}" style="min-width: 60%; max-width: 78%;">
+	</div>
+	
+	<div id="Content_2" class="w3-center w3-animate-bottom">
+		<fieldset>
+			<legend>LOGIN</legend>
+			<form method="POST" action="{% url 'Autenticar' %}" name="form20171">
+				{% csrf_token %}
+				<table class="w3-table">
+					<tr>
+						<td><label>CPF</label></td>
+						<td><input type="text" name="CPFA" maxlength="14" pattern="[^.^-0-9]+$" onkeypress="mascara(this, mcpf);" required  class="w3-input"></td>
+					</tr>
+					
+					<tr>
+						<td><label>Senha</label></td>
+						<td><input type="password" name="SenhaA" required  class="w3-input"></td>
+					</tr>
+				</table>
+				<br>
+				<div align="right">
+					<input type="submit" name="Entrar" class="w3-button w3-black" value="Entrar">
+				</div>
+			</form>
+		</fieldset>
+	</div>
+	<div id="Rodape">
+		<hr>
+		<h4>&#169; COPYRIGHT 2017 - Grupo Triplex IFRN</h4>
+	</div>
+</body>
+</html>

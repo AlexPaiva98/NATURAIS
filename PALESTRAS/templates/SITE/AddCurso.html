@@ -1,0 +1,126 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<title>PCNT</title>
+	<meta charset="utf-8">
+	<meta name="author" content="Alex Sandro, Caio Vitor e Mathuzalem Ferreira">
+	<meta name="description" content="Inscrição para palestras sobre Ciências da Natureza e suas Tecnologias">
+	<meta name="keywords" content="Ciências da Natureza e suas Tecnologias">
+	<meta name="viewport" content="width=device-width, user-scalable=no">
+	<link rel="stylesheet" href="{% static 'css/w3.css' %}">
+	<link rel="stylesheet" href="{% static 'css/index.css' %}">
+	<script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+	<script type="text/javascript">
+		function mascara(o,f){
+    		v_obj=o
+    		v_fun=f
+    	setTimeout("execmascara()",1)
+		}
+		function execmascara(){
+		    v_obj.value=v_fun(v_obj.value)
+		}
+		function mtel(v){
+		    v=v.replace(/\D/g,"");             //Remove tudo o que não é dígito
+		    v=v.replace(/^(\d{2})(\d)/g,"($1) $2"); //Coloca parênteses em volta dos dois primeiros dígitos
+		    v=v.replace(/(\d)(\d{4})$/,"$1-$2");    //Coloca hífen entre o quarto e o quinto dígitos
+		    return v;
+		}
+
+		function mcel(v){
+    		v=v.replace(/\D/g,"");             //Remove tudo o que não é dígito
+    		v=v.replace(/(\d)(\d{3})$/,"$1-$2");    //Coloca hífen entre o quarto e o quinto dígitos
+    		return v;
+		}
+
+		function id( el ){
+			return document.getElementById( el );
+		}
+		window.onload = function(){
+			id('telefone').onkeyup = function(){
+				mascara( this, mtel );
+			}
+		}
+
+
+		function validarposi(p) {
+			if (p > 0) {
+				return p;
+			}
+			else {
+				alert("Valor inválido! Apenas números positivos.");
+				return false;
+			}
+		}
+
+		function soLetras(v){
+		return v.replace(/\d/g,"") //Remove tudo o que não é Letra
+		}
+		function soLetrasMA(v){
+		v=v.toUpperCase() //Maiúsculas
+		return v.replace(/\d/g,"") //Remove tudo o que não é Letra ->maiusculas
+		}
+		function soLetrasMI(v){
+		v=v.toLowerCase() //Minusculas
+		return v.replace(/\d/g,"") //Remove tudo o que não é Letra ->minusculas
+		}
+		function soNumeros(v){
+		return v.replace(/\D/g,"") //Remove tudo o que não é dígito
+		}
+	</script>
+</head>
+
+<body>
+	<div align="center" id="Cabeçalho">
+		<a href="{% url 'Retornar' %}"><img alt="CIÊNCIAS DA NATUREZA" src="{% static 'logo.png' %}" id="Logo"></a>
+		<a href="{% url 'Login' %}"><button name="Login" id="Button_1" class="w3-button w3-black">LOGOUT</button></a>
+	</div>
+
+	<div id="Div_1">
+		<img src="{% static 'left_detalhe.png' %}" style="min-width: 20%; max-width: 30%;">
+	</div>
+	<div id="Div_2" align="right">
+		<img src="{% static 'right_detalhe.png' %}" style="min-width: 60%; max-width: 78%;">
+	</div>
+	<div id="Content_2" class="w3-center w3-animate-bottom">
+		<fieldset>
+			<legend>FORMULÁRIO INCLUSÃO DE CURSO</legend>
+			<form method="POST" action="{% url 'Inserir1' %}" name="form20172">
+				{% csrf_token %}
+				<table class="w3-table">
+					<tr>
+						<td><label>Nome</label></td>
+						<td><input type="text" name="Nome" required  class="w3-input" id="Nome1" onkeypress="mascara(this, soLetras);"></td>
+					</tr>
+					<tr>
+						<td><label>Carga Horária (Horas)</label></td>
+						<td><input type="number" name="CH" maxlength="14" required class="w3-input" id="Hora" onkeypress="mascara(this, validarposi);"></td>
+					</tr>
+					<tr>
+						<td><label>Materia</label></td>
+						<td><input type="radio" name="Materia" value="1" class="w3-radio"> Biologia
+							<input type="radio" name="Materia" value="2" class="w3-radio"> Física
+							<input type="radio" name="Materia" value="3" class="w3-radio"> Química</td>
+					</tr>
+					<tr>
+						<td><label>Vagas</label></td>
+						<td><input type="number" name="Vagas" maxlength="14" required class="w3-input" id="Vag" onkeypress="mascara(this, validarposi);"></td>
+					</tr>
+					<tr>
+						<td><label>CEP</label></td>
+						<td><input type="text" name="CEP" maxlength="9" required onkeypress="mascara(this, mcel);" class="w3-input"></td>
+					</tr>
+				</table>
+				<br>
+				<div align="right">
+					<input type="submit" name="Concluir" value="Concluir" class="w3-button w3-black">
+				</div>
+			</form>
+		</fieldset>
+	</div>
+	<div id="Rodape">
+		<hr>
+		<h4>&#169; COPYRIGHT 2017 - Grupo Triplex IFRN</h4>
+	</div>
+</body>
+</html>

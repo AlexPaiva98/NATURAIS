@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<title>PCNT</title>
+	<meta charset="utf-8">
+	<meta name="author" content="Alex Sandro, Caio Vitor e Mathuzalem Ferreira">
+	<meta name="description" content="Inscrição para palestras sobre Ciências da Natureza e suas Tecnologias">
+	<meta name="keywords" content="Ciências da Natureza e suas Tecnologias">
+	<meta name="viewport" content="width=device-width, user-scalable=no">
+	<link rel="stylesheet" href="{% static 'css/w3.css' %}">
+	<link rel="stylesheet" href="{% static 'css/index.css' %}">
+	<script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+</head>
+
+<body>
+	<div align="center" id="Cabeçalho">
+		<a href="{% url 'Voltar' %}"><img alt="CIÊNCIAS DA NATUREZA" src="{% static 'logo.png' %}" id="Logo"></a>
+		<a href="{% url 'Login' %}"><button name="Login" id="Button_1" class="w3-button w3-black">LOGOUT</button></a>
+	</div>
+
+	<div id="Div_1">
+		<img src="{% static 'left_detalhe.png' %}" style="min-width: 20%; max-width: 30%;">
+	</div>
+	<div id="Div_2" align="right">
+		<img src="{% static 'right_detalhe.png' %}" style="min-width: 60%; max-width: 78%;">
+	</div>
+	<div id="Div_3" class="w3-responsive">
+		<fieldset>
+			<h1 style="font-family: 'Comic Sans MS'">Erro</h1>
+			<p style="text-indent:4em; font-family: 'Comic Sans MS';">Inscrição impossível! As vagas para este curso já acabaram.</p>
+		</fieldset>
+	</div>
+	<div id="Rodape">
+		<hr>
+		<h4>&#169; COPYRIGHT 2017 - Grupo Triplex IFRN</h4>
+	</div>
+</body>
+</html>

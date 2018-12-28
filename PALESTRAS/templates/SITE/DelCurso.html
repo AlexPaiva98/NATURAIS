@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<title>PCNT</title>
+	<meta charset="utf-8">
+	<meta name="author" content="Alex Sandro, Caio Vitor e Mathuzalem Ferreira">
+	<meta name="description" content="Inscrição para palestras sobre Ciências da Natureza e suas Tecnologias">
+	<meta name="keywords" content="Ciências da Natureza e suas Tecnologias">
+	<meta name="viewport" content="width=device-width, user-scalable=no">
+	<link rel="stylesheet" href="{% static 'css/w3.css' %}">
+	<link rel="stylesheet" href="{% static 'css/index.css' %}">
+	<script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+	<script type="text/javascript">
+		function Verificar_Valor(){
+			var cursos = document.getElementById("Corpo").getAttribute("data-produto");
+			var x = cursos.split(",");
+			var y = x.length;
+			var p = [];
+			var cond = false;
+			for (var i = 0; i < y; i++) {
+				console.log(i)
+				p[i] = parseInt(x[i].split(/\D+/).join(""), 10);
+			}
+			for (var i = 0; i < p.length; i++) {
+				if (p[i] == Num.value) {
+					cond = true;
+				}
+			}
+			if (cond == true) {
+				console.log("Deu certo!")
+			}
+			else{
+				alert("Curso inexistente!")
+				form20175.Num.focus();
+				return false
+			}
+		}
+	</script>
+</head>
+
+<body id="Corpo" data-produto="{{ conta }}">
+	<div align="center" id="Cabeçalho">
+		<a href="{% url 'Retornar' %}"><img alt="CIÊNCIAS DA NATUREZA" src="{% static 'logo.png' %}" id="Logo"></a>
+		<a href="{% url 'Login' %}"><button name="Login" id="Button_1" class="w3-button w3-black">LOGOUT</button></a>
+	</div>
+
+	<div id="Div_1">
+		<img src="{% static 'left_detalhe.png' %}" style="min-width: 20%; max-width: 30%;">
+	</div>
+	<div id="Div_2" align="right">
+		<img src="{% static 'right_detalhe.png' %}" style="min-width: 60%; max-width: 78%;">
+	</div>
+	<div id="Content_2" class="w3-center w3-animate-bottom" data-produto="{{ Listw }}">
+		<fieldset>
+			<legend>Lista de Cursos</legend>
+			<script type="text/javascript">
+				var cursos = document.getElementById("Corpo").getAttribute("data-produto");
+				var x = cursos.split(",")
+				var y = x.length
+				var k = ""
+				for (var i = 0; i < y; i++) {
+					k = k +(x[i]) + "<br>"
+				}
+				document.write(k)
+			</script>
+		</fieldset>
+		<br>
+		<fieldset>
+			<legend>Deletar Curso</legend>
+			<form method="POST" action="{% url 'Excluir' %}" name="form20175">
+				{% csrf_token %}
+				<table class="w3-table">
+					<tr>
+						<td><label>Número do Curso</label></td>
+						<td><input type="number" name="DCodigo" required class="w3-input" id="Num"></td>
+					</tr>
+				</table>
+				<br>
+		
+				<div align="right">
+					<input type="submit" name="Concluir" value="Concluir" class="w3-button w3-black" onclick="return Verificar_Valor();">
+				</div>
+			</form>
+		</fieldset>
+	</div>
+	<div id="Rodape">
+		<hr>
+		<h4>&#169; COPYRIGHT 2017 - Grupo Triplex IFRN</h4>
+	</div>
+</body>
+</html>
